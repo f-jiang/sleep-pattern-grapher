@@ -7,7 +7,6 @@ from sys import argv
 
 data_file = argv[1]
 raw_data = parse(data_file)
-print(raw_data)
 
 sleep_wake_times = []
 nap_wake_times = []
