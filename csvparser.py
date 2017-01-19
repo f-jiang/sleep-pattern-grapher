@@ -61,9 +61,9 @@ def parse(filename):
             if first_line:
                 first_line = False
                 cur_date = datetime.strptime(row[0], _dfmtstr).date()
-            elif length != 0 and length % 3 == 0:
-                data[cur_date] = _parse_row(row, cur_date)
-            if not first_line:
+            else:
+                if length != 0 and length % 3 == 0:
+                    data[cur_date] = _parse_row(row, cur_date)
                 cur_date += timedelta(days=1)
 
     return OrderedDict(sorted(data.items()))
