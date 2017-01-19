@@ -1,4 +1,5 @@
 import plotly as py, plotly.graph_objs as go
+import datetime
 from csvparser import parse
 from os.path import basename, splitext
 from sys import argv
@@ -14,17 +15,12 @@ for date, sleeps in raw_data.items():
             time = round(sleep.hour + sleep.minute / 60)
             if time == 24:
                 time = 0
-            elif time > 12:  # convert to 12h time for graphing purposes
-                time -= 12
             sleeping_times.append(time)
             break
 
-min = min(sleeping_times)
-max = max(sleeping_times)
-range = range(min, max + 1)
-hist = [sleeping_times.count(i) for i in range]
-
-data = [go.Bar(x=list(range), y=hist)]
+times = [datetime.time(hour=i) for i in range(15, 24)] + [datetime.time(hour=i) for i in range(0, 15)]
+hist = [sleeping_times.count(i.hour) for i in times]
+data = [go.Bar(x=list(times), y=hist)]
 
 dates = list(raw_data.keys())
 fmt = '%m-%d-%y'

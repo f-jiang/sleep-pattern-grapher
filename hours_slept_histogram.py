@@ -15,12 +15,10 @@ for date, sleeps in raw_data.items():
         total += delta_h
     sleep_durations.append(total)
 
-min = min(sleep_durations)
-max = max(sleep_durations)
-range = range(min, max + 1)
-hist = [sleep_durations.count(i) for i in range]
+durations = range(0, max(sleep_durations) + 1)
+hist = [sleep_durations.count(i) for i in durations]
 
-data = [go.Bar(x=list(range), y=hist)]
+data = [go.Bar(x=list(durations), y=hist)]
 
 dates = list(raw_data.keys())
 fmt = '%m-%d-%y'
