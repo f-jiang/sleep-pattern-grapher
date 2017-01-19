@@ -1,4 +1,5 @@
-import plotly as py, plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
 from csvparser import parse
 from os.path import basename, splitext
 from sys import argv
@@ -40,9 +41,8 @@ path = '{}_{}--{}.html'.format(name, start, end)
 
 data = go.Data([sleep_trace, nap_trace])
 layout = go.Layout(title='Hours Slept Per Day - {} to {}'.format(start, end),
-                xaxis={'title': 'Hours Slept', 'dtick': 1},
-                yaxis={'title': 'Number of Days', 'dtick': 1})
+                   xaxis={'title': 'Hours Slept', 'dtick': 1},
+                   yaxis={'title': 'Number of Days', 'dtick': 1})
 figure = go.Figure(data=data, layout=layout)
 
 py.offline.plot(figure, filename=path)
-

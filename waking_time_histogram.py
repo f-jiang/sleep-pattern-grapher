@@ -1,4 +1,5 @@
-import plotly as py, plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
 import datetime
 from csvparser import parse
 from os.path import basename, splitext
@@ -6,6 +7,7 @@ from sys import argv
 
 data_file = argv[1]
 raw_data = parse(data_file)
+print(raw_data)
 
 sleep_wake_times = []
 nap_wake_times = []
@@ -35,9 +37,8 @@ path = '{}_{}--{}.html'.format(name, start, end)
 
 data = go.Data([sleep_trace, nap_trace])
 layout = go.Layout(title='Wake Times - {} to {}'.format(start, end),
-                xaxis={'title': 'Time of Day', 'dtick': 1},
-                yaxis={'title': 'Number of Days', 'dtick': 1})
+                   xaxis={'title': 'Time of Day', 'dtick': 1},
+                   yaxis={'title': 'Number of Days', 'dtick': 1})
 figure = go.Figure(data=data, layout=layout)
 
 py.offline.plot(figure, filename=path)
-
