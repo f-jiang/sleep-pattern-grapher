@@ -20,7 +20,7 @@ for date, sleeps in raw_data.items():
 
 times = [datetime.time(hour=i) for i in range(15, 24)] + [datetime.time(hour=i) for i in range(0, 15)]
 hist = [sleeping_times.count(i.hour) for i in times]
-data = [go.Bar(x=list(times), y=hist)]
+data = [go.Bar(x=times, y=hist)]
 
 dates = list(raw_data.keys())
 fmt = '%m-%d-%y'
