@@ -10,9 +10,7 @@ data_file = argv[1]
 raw_data = parse(data_file)
 
 sleep_durations = []
-sleep_dates = []
 nap_durations = []
-nap_dates = []
 for date, rests in raw_data.items():
     sleep_total = nap_total = 0
     for r in rests:
@@ -25,9 +23,7 @@ for date, rests in raw_data.items():
 
     dt = datetime.combine(date, datetime.min.time())
     sleep_durations.append(sleep_total)
-    sleep_dates.append(dt)
     nap_durations.append(nap_total)
-    nap_dates.append(dt)
 
 dates = list(raw_data.keys())
 
