@@ -1,6 +1,5 @@
 import plotly as py
 import plotly.graph_objs as go
-from datetime import datetime
 from sys import argv
 
 import names
@@ -21,7 +20,6 @@ for date, rests in raw_data.items():
         else:
             sleep_total += delta_h
 
-    dt = datetime.combine(date, datetime.min.time())
     sleep_durations.append(sleep_total)
     nap_durations.append(nap_total)
 
