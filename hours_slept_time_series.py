@@ -25,8 +25,8 @@ for date, rests in raw_data.items():
 
 dates = list(raw_data.keys())
 
-sleep_trace = go.Scatter(x=dates, y=sleep_durations, name='Sleep Duration')
-nap_trace = go.Scatter(x=dates, y=nap_durations, name='Nap Duration')
+sleep_trace = go.Scatter(x=dates, y=sleep_durations, name='Sleep Duration', mode='lines+markers')
+nap_trace = go.Scatter(x=dates, y=nap_durations, name='Nap Duration', mode='lines+markers')
 
 data = go.Data([sleep_trace, nap_trace])
 layout = go.Layout(title=names.graph_title('Hours Slept per Day', dates),
@@ -34,3 +34,4 @@ layout = go.Layout(title=names.graph_title('Hours Slept per Day', dates),
 figure = go.Figure(data=data, layout=layout)
 
 py.offline.plot(figure, filename=names.output_file_name(__file__, dates))
+
