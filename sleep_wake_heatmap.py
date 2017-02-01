@@ -3,8 +3,8 @@ import plotly.graph_objs as go
 from datetime import datetime, time, timedelta
 from sys import argv
 
-import names
-from csvparser import parse
+import utils.names as names
+from utils.csvparser import parse
 
 # load data from csv into an OrderedDict
 data_file = argv[1]

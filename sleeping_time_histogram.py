@@ -3,8 +3,8 @@ import plotly.graph_objs as go
 import datetime
 from sys import argv
 
-import names
-from csvparser import parse
+import utils.names as names
+from utils.csvparser import parse
 
 data_file = argv[1]
 raw_data = parse(data_file)
