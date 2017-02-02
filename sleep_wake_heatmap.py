@@ -5,6 +5,7 @@ from sys import argv
 
 import utils.names as names
 from utils.csvparser import parse
+from utils.exporter import export
 
 # load data from csv into an OrderedDict
 data_file = argv[1]
@@ -51,5 +52,5 @@ layout = go.Layout(title=names.graph_title('Sleep Heatmap', dates),
                    yaxis={'title': 'Time of Day', 'ticklen': 0})
 figure = go.Figure(data=data, layout=layout)
 
-py.offline.plot(figure, filename=names.output_file_name(__file__, dates))
+export(figure, __file__, dates)
 

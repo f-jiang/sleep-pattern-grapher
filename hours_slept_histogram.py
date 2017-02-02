@@ -4,6 +4,7 @@ from sys import argv
 
 import utils.names as names
 from utils.csvparser import parse
+from utils.exporter import export
 
 data_file = argv[1]
 raw_data = parse(data_file)
@@ -41,4 +42,5 @@ layout = go.Layout(title=names.graph_title('Hours Slept Per Day', dates),
                    yaxis={'title': 'Number of Days', 'dtick': 1})
 figure = go.Figure(data=data, layout=layout)
 
-py.offline.plot(figure, filename=names.output_file_name(__file__, dates))
+export(figure, __file__, dates)
+
