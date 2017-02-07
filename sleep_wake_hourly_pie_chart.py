@@ -39,6 +39,7 @@ rows = 4
 cols = 6
 gridw = 1 / cols
 gridh = 1 / rows
+margin = 0.02
 for i in range(0, 24):
     for j in range(0, ndays):
         if asleep[i + 24 * j]:
@@ -55,8 +56,8 @@ for i in range(0, 24):
                          textposition='inside',
                          name=name,
                          text=name,
-                         domain={'x': [x * gridw, (x + 1) * gridw], 
-                                 'y': [y * gridh, (y + 1) * gridh]}))
+                         domain={'x': [x * gridw + margin / 2, (x + 1) * gridw - margin / 2],
+                                 'y': [y * gridh + margin / 2, (y + 1) * gridh - margin / 2]}))
 layout = go.Layout(title=names.graph_title('Sleep/Wake Activity for each Hour of the Day', dates))
 figure = go.Figure(data=traces, layout=layout)
 
