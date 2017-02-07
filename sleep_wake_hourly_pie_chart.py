@@ -33,6 +33,7 @@ for date, rests in raw_data.items():
 # creating the pie chart
 labels = ['Asleep', 'Awake']
 values = [[0, 0] for i in range(0, 24)]
+marker = {'colors': ['#8cc665', '#f7f7f7']}
 
 traces = []
 rows = 4
@@ -57,7 +58,8 @@ for i in range(0, 24):
                          name=name,
                          text=name,
                          domain={'x': [x * gridw + margin / 2, (x + 1) * gridw - margin / 2],
-                                 'y': [y * gridh + margin / 2, (y + 1) * gridh - margin / 2]}))
+                                 'y': [y * gridh + margin / 2, (y + 1) * gridh - margin / 2]},
+                         marker=marker))
 layout = go.Layout(title=names.graph_title('Sleep/Wake Activity for each Hour of the Day', dates))
 figure = go.Figure(data=traces, layout=layout)
 
