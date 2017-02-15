@@ -6,7 +6,7 @@ from utils.names import output_file_name
 _out_dir = 'graphs/'
 
 def export(fig, module, dates):
-    graph_dir = '{}{}/'.format(_out_dir, str(module))
+    graph_dir = '{}{}/'.format(_out_dir, str(module))[:-3]  # remove .py extension from dir names
     makedirs(graph_dir, exist_ok=True)
     py.offline.plot(fig, filename=graph_dir + output_file_name(module, dates))
 
