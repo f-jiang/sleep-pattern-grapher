@@ -34,6 +34,11 @@ of graphs they produce:
 23:49,7:20,0                 # slept from 11:49 PM, Jan 30 - 7:20 AM, Jan 31
                              # leave a blank line for undocumented days
 15:00,16:00,1,1:30,7:25,0    # took a nap from 3-4 PM, hence the '1' after '16:00'
+1:50,7:25,0
+0:18,10:01,0
+3:30,7:52,0
+2/5/2016                     # can add extra headers to help keep track of date
+23:30,9:00,0
 ```
 
 ## Dependencies

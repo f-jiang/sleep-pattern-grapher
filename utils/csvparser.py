@@ -6,7 +6,11 @@ from collections import OrderedDict
 # 01/30/2016
 # 23:49,7:20,0  # 11:49 PM, Jan 30 - 7:20 AM, Jan 31
 #               # no data; blank line still needed so subsequent dates aren't misaligned
-# 1:30,7:25,0
+# 1:50,7:25,0
+# 0:18,10:01,0
+# 3:30,7:52,0
+# 2/4/2016      # can add extra headers to help keep track of date
+# 23:30,9:00,0
 
 _dfmtstr = '%m/%d/%y'
 _tfmtstr = '%H:%M'
@@ -44,14 +48,12 @@ def _file_to_dict(name):
     with open(name) as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
 
-        first_line = True
         for row in reader:
             length = len(row)
 
-            if first_line:
-                first_line = False
+            if length == 1: # row is a date header
                 cur_date = datetime.strptime(row[0], _dfmtstr).date()
-            else:
+            else:   # row contains sleep time data
                 if length != 0 and length % 3 == 0:
                     data[cur_date] = _parse_row(row, cur_date)
                 cur_date += timedelta(days=1)
