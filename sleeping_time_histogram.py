@@ -7,8 +7,7 @@ import utils.names as names
 from utils.csvparser import parse
 from utils.exporter import export
 
-data_file = argv[1]
-raw_data = parse(data_file)
+raw_data = parse(argv[1:])
 
 sleeping_times = []
 napping_times = []

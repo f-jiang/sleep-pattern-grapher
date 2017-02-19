@@ -36,22 +36,12 @@ def _parse_row(row, date):
     return data
 
 
-# load sleep cycle data from |filename| and return a
-# data structure containing this info
-#
-# ----sample data struct:
-# { '01/30/2013': [(datetime(year=2013, month=1, day=30, hour=23),
-#                   datetime(year=2013, month=1, day=31, hour=9), False)],
-#   '01/31/2013': [(datetime(year=2013, month=2, day=1, hour=2),
-#                   datetime(year=2013, month=2, day=1, hour=10), False)],
-#   '02/01/2013': [(datetime(year=2013, month=2, day=1, hour=13),
-#                   datetime(year=2013, month=2, day=1, hour=14), True),
-#                  (datetime(year=2013, month=2, day=2, hour=1),
-#                   datetime(year=2013, month=2, day=2, hour=8), False)] }
-def parse(filename):
+# load sleep cycle data from file with the |name| provided and return
+# an unsorted dictionary containing this info
+def _file_to_dict(name):
     data = {}
 
-    with open(filename) as csvfile:
+    with open(name) as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
 
         first_line = True
@@ -66,4 +56,27 @@ def parse(filename):
                     data[cur_date] = _parse_row(row, cur_date)
                 cur_date += timedelta(days=1)
 
+    return data
+
+
+# load sleep cycle data from the array of |files| provided and return a
+# single dictionary containing this info. items in the dictionary
+# are sorted by date.
+#
+# ----sample data struct:
+# { '01/30/2013': [(datetime(year=2013, month=1, day=30, hour=23),
+#                   datetime(year=2013, month=1, day=31, hour=9), False)],
+#   '01/31/2013': [(datetime(year=2013, month=2, day=1, hour=2),
+#                   datetime(year=2013, month=2, day=1, hour=10), False)],
+#   '02/01/2013': [(datetime(year=2013, month=2, day=1, hour=13),
+#                   datetime(year=2013, month=2, day=1, hour=14), True),
+#                  (datetime(year=2013, month=2, day=2, hour=1),
+#                   datetime(year=2013, month=2, day=2, hour=8), False)] }
+def parse(files):
+    data = {}
+
+    for f in files:
+        data.update(_file_to_dict(f))
+
     return OrderedDict(sorted(data.items()))
+

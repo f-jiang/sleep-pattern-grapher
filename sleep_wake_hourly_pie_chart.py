@@ -9,8 +9,7 @@ from utils.csvparser import parse
 from utils.exporter import export
 
 # load data from csv into an OrderedDict
-data_file = argv[1]
-raw_data = parse(data_file)
+raw_data = parse(argv[1:])
 dates = list(raw_data.keys())
 ndays = (dates[-1] - dates[0]).days + 2
 
