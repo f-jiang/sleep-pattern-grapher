@@ -1,5 +1,3 @@
-from os.path import basename, splitext
-
 _dfmtstr = '%m-%d-%y'
 
 
@@ -14,7 +12,7 @@ def _end_date(date_range):
 def output_file_name(cur_file, date_range):
     start = _start_date(date_range)
     end = _end_date(date_range)
-    name = splitext(basename(cur_file))[0]
+    name = cur_file[:-3]    # strip the file extension from the name
     return '{}_{}--{}.html'.format(name, start, end)
 
 
