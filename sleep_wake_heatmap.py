@@ -1,14 +1,14 @@
 import plotly as py
 import plotly.graph_objs as go
 from datetime import datetime, time, timedelta
-from sys import argv
 
 import utils.names as names
 from utils.csvparser import parse
 from utils.exporter import export
+from utils.args import args
 
 # load data from csv into an OrderedDict
-raw_data = parse(argv[1:])
+raw_data = parse(args['data_files'], args['start_date'], args['end_date'])
 dates = list(raw_data.keys())
 
 # populating the grid

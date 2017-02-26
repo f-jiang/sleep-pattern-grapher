@@ -74,11 +74,20 @@ def _file_to_dict(name):
 #                   datetime(year=2013, month=2, day=1, hour=14), True),
 #                  (datetime(year=2013, month=2, day=2, hour=1),
 #                   datetime(year=2013, month=2, day=2, hour=8), False)] }
-def parse(files):
+def parse(files, start=None, end=None):
     data = {}
 
     for f in files:
         data.update(_file_to_dict(f))
+
+    if start is not None or end is not None:
+        dates = list(data.keys())
+        if start is None:
+            start = min(dates)
+        if end is None:
+            end = max(dates)
+
+        data = dict((k, v) for k, v in data.items() if start <= k <= end)
 
     return OrderedDict(sorted(data.items()))
 

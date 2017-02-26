@@ -1,13 +1,13 @@
 import plotly as py
 import plotly.graph_objs as go
 import datetime
-from sys import argv
 
 import utils.names as names
 from utils.csvparser import parse
 from utils.exporter import export
+from utils.args import args
 
-raw_data = parse(argv[1:])
+raw_data = parse(args['data_files'], args['start_date'], args['end_date'])
 
 sleeping_times = []
 napping_times = []
