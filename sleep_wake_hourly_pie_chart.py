@@ -1,6 +1,5 @@
 import plotly as py
 import plotly.graph_objs as go
-import plotly.tools as tools
 from datetime import datetime, time, timedelta
 
 import utils.names as names
