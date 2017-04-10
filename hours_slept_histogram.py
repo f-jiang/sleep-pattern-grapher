@@ -22,8 +22,10 @@ for date, rests in raw_data.items():
         else:
             has_sleep = True
             sleep_total += delta_h
-    if has_sleep:
+    # count sleepless nights in the histogram
+    if has_sleep or sleep_total == 0:
         sleep_durations.append(sleep_total)
+    # however, ignore napless days
     if has_nap:
         nap_durations.append(nap_total)
 
